@@ -6,14 +6,18 @@ import java.math.BigDecimal;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
 
 import org.springframework.format.annotation.NumberFormat;
 
 import be.vdab.toysforboys.entities.Product;
 
 @Embeddable
+@NamedEntityGraph(name = OrderDetail.MET_PRODUCT, attributeNodes = @NamedAttributeNode("product"))
 public class OrderDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
+	public static final String MET_PRODUCT = "OrderDetail.metProduct";
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "productId")
 	private Product product;
