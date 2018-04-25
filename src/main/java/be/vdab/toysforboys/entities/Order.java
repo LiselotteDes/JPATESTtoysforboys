@@ -15,20 +15,28 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
 import javax.persistence.Table;
 import javax.persistence.Version;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import be.vdab.toysforboys.enums.Status;
 import be.vdab.toysforboys.valueobjects.OrderDetail;
 
 @Entity
 @Table(name = "orders")
+@NamedEntityGraph(name = Order.WITH_CUSTOMER, attributeNodes = @NamedAttributeNode("customer"))
 public class Order implements Serializable {
 	private static final long serialVersionUID = 1L;
+	public static final String WITH_CUSTOMER = "Order.withCustomer";
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	@DateTimeFormat(style = "S-")
 	private LocalDate orderDate;
+	@DateTimeFormat(style = "S-")
 	private LocalDate requiredDate;
 	private LocalDate shippedDate;
 	private String comments;
@@ -85,5 +93,9 @@ public class Order implements Serializable {
 	
 	public Set<OrderDetail> getOrderDetails() {
 		return Collections.unmodifiableSet(orderDetails);
+	}
+	
+	public boolean isStockEnough() {
+		return orderDetails.stream().allMatch(detail -> detail.isStockEnough());
 	}
 }

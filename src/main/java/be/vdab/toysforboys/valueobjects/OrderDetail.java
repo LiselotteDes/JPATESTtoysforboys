@@ -7,6 +7,8 @@ import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.springframework.format.annotation.NumberFormat;
+
 import be.vdab.toysforboys.entities.Product;
 
 @Embeddable
@@ -16,6 +18,7 @@ public class OrderDetail implements Serializable {
 	@JoinColumn(name = "productId")
 	private Product product;
 	private long quantityOrdered;
+	@NumberFormat(pattern = "0.00")
 	private BigDecimal priceEach;
 	
 	protected OrderDetail() {
@@ -33,6 +36,13 @@ public class OrderDetail implements Serializable {
 	}
 	public BigDecimal getPriceEach() {
 		return priceEach;
+	}
+	@NumberFormat(pattern = "0.00")
+	public BigDecimal getValue() {
+		return priceEach.multiply(BigDecimal.valueOf(quantityOrdered));
+	}
+	public boolean isStockEnough() {
+		return product.getQuantityInStock() >= this.quantityOrdered;
 	}
 	@Override
 	public int hashCode() {
@@ -57,6 +67,4 @@ public class OrderDetail implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
 }

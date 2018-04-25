@@ -1,5 +1,10 @@
 package be.vdab.toysforboys.web;
 
-public class IndexController {
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+@Controller
+@RequestMapping("/")
+class IndexController {
+	
 }

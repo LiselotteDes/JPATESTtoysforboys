@@ -9,11 +9,12 @@
 </head>
 <body>
 	<h1>Unshipped orders</h1>
-		<table>
+	<c:if test="${not empty param.fout}">
+		<div class="fout">${param.fout}</div>
+	</c:if>
+	<table>
 	
 	</table>
-	<c:if ${not empty unshippedOrders}>
-	
-	</c:if>
+
 </body>
 </html>
