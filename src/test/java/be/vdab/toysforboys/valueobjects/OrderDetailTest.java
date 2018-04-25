@@ -28,18 +28,18 @@ public class OrderDetailTest {
 	}
 
 	@Test
-	public void isStockEnoughLevertTrueAlsStockVoldoendeIs() {
+	public void isDeliverableLevertTrueAlsStockVoldoendeIs() {
 		orderDetail = new OrderDetail(product, 5, BigDecimal.ONE);
-		assertTrue(orderDetail.isStockEnough());
+		assertTrue(orderDetail.isDeliverable());
 	}
 	@Test
-	public void isStockEnoughLevertFalseAlsErMeerOrderedIsDanInStock() {
+	public void isDeliverableLevertFalseAlsErMeerOrderedIsDanInStock() {
 		orderDetail = new OrderDetail(product, 11, BigDecimal.ONE);
-		assertFalse(orderDetail.isStockEnough());
+		assertFalse(orderDetail.isDeliverable());
 	}
 	@Test
-	public void isStockEnoughLevertTrueAlsErEvenveelBesteldWordtAlsErStockIs() {
+	public void isDeliverableLevertTrueAlsErEvenveelBesteldWordtAlsErStockIs() {
 		orderDetail = new OrderDetail(product, 10, BigDecimal.ONE);
-		assertTrue(orderDetail.isStockEnough());
+		assertTrue(orderDetail.isDeliverable());
 	}
 }

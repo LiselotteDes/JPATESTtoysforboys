@@ -95,7 +95,7 @@ public class Order implements Serializable {
 		return Collections.unmodifiableSet(orderDetails);
 	}
 	
-	public boolean isStockEnough() {
-		return orderDetails.stream().allMatch(detail -> detail.isStockEnough());
+	public boolean isDeliverable() {
+		return orderDetails.stream().allMatch(detail -> detail.isDeliverable());
 	}
 }
