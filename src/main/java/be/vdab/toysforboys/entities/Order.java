@@ -26,6 +26,7 @@ import javax.persistence.Version;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import be.vdab.toysforboys.enums.Status;
+import be.vdab.toysforboys.exceptions.OutOfStockException;
 import be.vdab.toysforboys.valueobjects.OrderDetail;
 
 @Entity
@@ -37,9 +38,9 @@ public class Order implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@DateTimeFormat(style = "S-")
+	@DateTimeFormat(style = "S-", pattern = "dd-mm-yyyy")
 	private LocalDate orderDate;
-	@DateTimeFormat(style = "S-")
+	@DateTimeFormat(style = "S-", pattern = "dd-mm-yyyy")
 	private LocalDate requiredDate;
 	private LocalDate shippedDate;
 	private String comments;
@@ -104,7 +105,20 @@ public class Order implements Serializable {
 				.reduce(BigDecimal.ZERO, (vorigeSom, waarde) -> vorigeSom.add(waarde));
 	}
 	
-	public boolean isDeliverable() {
+	private boolean isDeliverable() {
 		return orderDetails.stream().allMatch(detail -> detail.isDeliverable());
+	}
+	
+	public void ship() {
+		if (! isDeliverable()) {
+			throw new OutOfStockException();
+		}
+		status = Status.SHIPPED;
+		shippedDate = LocalDate.now();
+		for (OrderDetail detail : orderDetails) {
+			long quantityOrdered = detail.getQuantityOrdered();
+			Product product = detail.getProduct();
+			product.ship(quantityOrdered);
+		}
 	}
 }

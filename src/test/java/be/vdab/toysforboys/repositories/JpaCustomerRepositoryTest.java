@@ -29,13 +29,13 @@ public class JpaCustomerRepositoryTest extends AbstractTransactionalJUnit4Spring
 	@Autowired
 	private JpaCustomerRepository repository;
 	
-	private long idOffTestCustomer() {
+	private long idOfTestCustomer() {
 		return super.jdbcTemplate.queryForObject("select id from customers where name='test'", Long.class);
 	}
 	
 	@Test
 	public void read() {
-		Customer customer = repository.read(idOffTestCustomer()).get();
+		Customer customer = repository.read(idOfTestCustomer()).get();
 		assertEquals("test", customer.getName());
 		assertEquals("test", customer.getAddress().getCity());
 		assertEquals("test", customer.getAddress().getCountry().getName());

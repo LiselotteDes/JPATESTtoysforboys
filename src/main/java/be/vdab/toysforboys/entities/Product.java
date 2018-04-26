@@ -66,7 +66,15 @@ public class Product implements Serializable {
 	public BigDecimal getBuyPrice() {
 		return buyPrice;
 	}
-
+	
+	public void ship(long quantity) {
+		if (quantity > quantityInStock || quantity > quantityInOrder) {
+			throw new IllegalArgumentException();
+		}
+		quantityInOrder -= quantity;
+		quantityInStock -= quantity;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
