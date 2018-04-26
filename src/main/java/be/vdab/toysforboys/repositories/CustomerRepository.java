@@ -1,5 +1,9 @@
 package be.vdab.toysforboys.repositories;
 
-public interface CustomerRepository {
+import java.util.Optional;
 
+import be.vdab.toysforboys.entities.Customer;
+
+public interface CustomerRepository {
+	Optional<Customer> read(long id);
 }

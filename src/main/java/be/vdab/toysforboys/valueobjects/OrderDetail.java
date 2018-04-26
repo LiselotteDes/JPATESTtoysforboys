@@ -14,7 +14,6 @@ import org.springframework.format.annotation.NumberFormat;
 import be.vdab.toysforboys.entities.Product;
 
 @Embeddable
-//@NamedEntityGraph(name = OrderDetail.MET_PRODUCT, attributeNodes = @NamedAttributeNode("product"))
 public class OrderDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 	public static final String MET_PRODUCT = "OrderDetail.metProduct";

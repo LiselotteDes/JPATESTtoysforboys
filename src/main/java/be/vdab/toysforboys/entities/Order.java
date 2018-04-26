@@ -1,6 +1,7 @@
 package be.vdab.toysforboys.entities;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.LinkedHashSet;
@@ -9,6 +10,8 @@ import java.util.Set;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -43,6 +46,7 @@ public class Order implements Serializable {
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	@JoinColumn(name = "customerId")
 	private Customer customer;
+	@Enumerated(EnumType.STRING)
 	private Status status;
 	@ElementCollection
 	@CollectionTable(name = "orderdetails", joinColumns = @JoinColumn(name = "orderId"))
@@ -93,6 +97,11 @@ public class Order implements Serializable {
 	
 	public Set<OrderDetail> getOrderDetails() {
 		return Collections.unmodifiableSet(orderDetails);
+	}
+	
+	public BigDecimal getValue() {
+		return orderDetails.stream().map(detail -> detail.getValue())
+				.reduce(BigDecimal.ZERO, (vorigeSom, waarde) -> vorigeSom.add(waarde));
 	}
 	
 	public boolean isDeliverable() {

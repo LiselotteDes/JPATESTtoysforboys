@@ -7,7 +7,7 @@
 	<named-query name="Order.findUnshippedOrders">
 		<query>
 			select o from Order o
-			where o.status not in ('SHIPPED', 'CANCELED')
+			where o.status not in ('SHIPPED', 'CANCELLED')
 			order by o.id
 		</query>
 	</named-query>
