@@ -1,12 +1,12 @@
-package be.vdab.toysforboys.repositories;
+package be.vdab.toysforboys.services;
 
 import java.util.List;
 import java.util.Optional;
 
 import be.vdab.toysforboys.entities.Order;
 
-public interface OrderRepository {
+public interface OrderService {
 	Optional<Order> read(long id);
 	List<Order> findUnshippedOrders();
-	void shipOrders(List<Order> orders);
+	void ship(long id);
 }

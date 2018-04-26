@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><entities>
 	<entity>
-		<entity-name>be.vdab.toysforboys.entities.Product</entity-name>
+		<entity-name>be.vdab.toysforboys.entities.Country</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>228</entity-height>
-		<entity-X-Coordinate>770</entity-X-Coordinate>
-		<entity-Y-Coordinate>56</entity-Y-Coordinate>
+		<entity-height>128</entity-height>
+		<entity-X-Coordinate>100</entity-X-Coordinate>
+		<entity-Y-Coordinate>490</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
@@ -22,11 +22,11 @@
 	</entity>
 
 	<entity>
-		<entity-name>be.vdab.toysforboys.entities.Country</entity-name>
+		<entity-name>be.vdab.toysforboys.entities.Product</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>128</entity-height>
-		<entity-X-Coordinate>100</entity-X-Coordinate>
-		<entity-Y-Coordinate>490</entity-Y-Coordinate>
+		<entity-height>228</entity-height>
+		<entity-X-Coordinate>770</entity-X-Coordinate>
+		<entity-Y-Coordinate>56</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
@@ -57,7 +57,7 @@
 	<entity>
 		<entity-name>be.vdab.toysforboys.entities.Order</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>266</entity-height>
+		<entity-height>286</entity-height>
 		<entity-X-Coordinate>380</entity-X-Coordinate>
 		<entity-Y-Coordinate>30</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>

@@ -11,4 +11,11 @@
 			order by o.id
 		</query>
 	</named-query>
+	<named-query name="Order.shipOrders">
+		<query>
+			update Order o
+			set o.status = 'shipped'
+			where o.id in (:ids)
+		</query>
+	</named-query>
 </entity-mappings>

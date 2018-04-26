@@ -118,7 +118,8 @@ public class Order implements Serializable {
 		for (OrderDetail detail : orderDetails) {
 			long quantityOrdered = detail.getQuantityOrdered();
 			Product product = detail.getProduct();
-			product.ship(quantityOrdered);
+			product.setQuantityInOrder(product.getQuantityInOrder() - quantityOrdered);
+			product.setQuantityInStock(product.getQuantityInStock() - quantityOrdered);
 		}
 	}
 }

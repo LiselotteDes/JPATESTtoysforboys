@@ -67,12 +67,12 @@ public class Product implements Serializable {
 		return buyPrice;
 	}
 	
-	public void ship(long quantity) {
-		if (quantity > quantityInStock || quantity > quantityInOrder) {
-			throw new IllegalArgumentException();
-		}
-		quantityInOrder -= quantity;
-		quantityInStock -= quantity;
+	public void setQuantityInStock(long quantityInStock) {
+		this.quantityInStock = quantityInStock;
+	}
+
+	public void setQuantityInOrder(long quantityInOrder) {
+		this.quantityInOrder = quantityInOrder;
 	}
 	
 	@Override
