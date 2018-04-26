@@ -1,11 +1,12 @@
 package be.vdab.toysforboys.repositories;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -72,6 +73,8 @@ public class JpaOrderRepositoryTest extends AbstractTransactionalJUnit4SpringCon
 		Product product = manager.find(Product.class, productId);
 		assertTrue(order.getOrderDetails().contains(new OrderDetail(product,2,BigDecimal.valueOf(200))));
 	}
+	
+	// Testen van de Order method ship
 	@Test
 	public void shipOrder() {
 		Order order = repository.read(idOfTestOrder()).get();
@@ -87,6 +90,17 @@ public class JpaOrderRepositoryTest extends AbstractTransactionalJUnit4SpringCon
 //		manager.flush();
 		Order order = repository.read(idOfTestOrder()).get();
 		order.ship();
+	}
+	
+	@Test
+	public void findUnshippedOrders() {
+		List<Order> orders = repository.findUnshippedOrders();
+		long numberOfOrders = super.countRowsInTableWhere("orders", "status not in ('shipped','cancelled')");
+		assertEquals(numberOfOrders, orders.size());
+		orders.forEach(order -> {
+			assertNotEquals(order.getStatus(), Status.CANCELLED);
+			assertNotEquals(order.getStatus(), Status.SHIPPED);
+		});
 	}
 
 }

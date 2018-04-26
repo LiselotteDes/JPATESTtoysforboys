@@ -27,8 +27,4 @@ class JpaOrderRepository implements OrderRepository {
 				.setHint("javax.persistence.loadgraph", manager.createEntityGraph(Order.WITH_CUSTOMER))
 				.getResultList();
 	}
-	@Override
-	public void shipOrders(List<Order> orders) {
-		
-	}
 }
