@@ -10,7 +10,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +21,10 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import be.vdab.toysforboys.entities.Country;
-import be.vdab.toysforboys.entities.Customer;
 import be.vdab.toysforboys.entities.Order;
 import be.vdab.toysforboys.entities.Product;
 import be.vdab.toysforboys.enums.Status;
 import be.vdab.toysforboys.exceptions.OutOfStockException;
-import be.vdab.toysforboys.valueobjects.Address;
 import be.vdab.toysforboys.valueobjects.OrderDetail;
 
 @RunWith(SpringRunner.class)
@@ -42,19 +38,7 @@ public class JpaOrderRepositoryTest extends AbstractTransactionalJUnit4SpringCon
 	private EntityManager manager;
 	@Autowired
 	private JpaOrderRepository repository;
-	private Country country;
-	private Address address;
-	private Customer customer;
-	private Order order;
-	
-	@Before
-	public void before() {
-		country = new Country("test");
-		address = new Address("test", "test", "test", "test", country);
-		customer = new Customer("test", address);
-		order = new Order(LocalDate.now(), LocalDate.now(), LocalDate.now(), "test", customer, Status.PROCESSING);
-	}
-	
+
 	private long idOfTestOrder() {
 		return super.jdbcTemplate.queryForObject("select id from orders where comments='test'", Long.class);
 	}
