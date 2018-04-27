@@ -17,7 +17,6 @@ import be.vdab.toysforboys.entities.Country;
 import be.vdab.toysforboys.entities.Customer;
 import be.vdab.toysforboys.entities.Order;
 import be.vdab.toysforboys.enums.Status;
-import be.vdab.toysforboys.exceptions.ShippingFailedException;
 import be.vdab.toysforboys.repositories.OrderRepository;
 import be.vdab.toysforboys.valueobjects.Address;
 
@@ -41,9 +40,5 @@ public class DefaultOrderServiceTest {
 		service.ship(1);
 		assertEquals(Status.SHIPPED, order.getStatus());
 		verify(repository).read(1);
-	}
-	@Test(expected = ShippingFailedException.class)
-	public void shippingFailed() {
-		
 	}
 }
