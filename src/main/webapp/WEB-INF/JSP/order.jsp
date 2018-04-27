@@ -36,8 +36,8 @@
 				<td><spring:eval expression="detail.value"/></td>
 				<td class="center">
 				<c:choose>
-					<c:when test="${detail.deliverable}"><span class="green">&check;</span></c:when>
-					<c:otherwise><span class="red">&cross;</span></c:otherwise>
+					<c:when test="${detail.deliverable}"><span class="green">&amp;check;</span></c:when>
+					<c:otherwise><span class="red">&amp;cross;</span></c:otherwise>
 				</c:choose>
 				</td>
 			</tr>
