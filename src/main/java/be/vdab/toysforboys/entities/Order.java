@@ -24,6 +24,7 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
 
 import be.vdab.toysforboys.enums.Status;
 import be.vdab.toysforboys.exceptions.OutOfStockException;
@@ -38,9 +39,9 @@ public class Order implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@DateTimeFormat(style = "S-", pattern = "dd-mm-yy")
+	@DateTimeFormat(style = "S-")
 	private LocalDate orderDate;
-	@DateTimeFormat(style = "S-", pattern = "dd-mm-yyyy")
+	@DateTimeFormat(style = "S-")
 	private LocalDate requiredDate;
 	private LocalDate shippedDate;
 	private String comments;
@@ -99,7 +100,7 @@ public class Order implements Serializable {
 	public Set<OrderDetail> getOrderDetails() {
 		return Collections.unmodifiableSet(orderDetails);
 	}
-	
+	@NumberFormat(pattern = "#,##0.00")
 	public BigDecimal getValue() {
 		return orderDetails.stream().map(detail -> detail.getValue())
 				.reduce(BigDecimal.ZERO, (vorigeSom, waarde) -> vorigeSom.add(waarde));

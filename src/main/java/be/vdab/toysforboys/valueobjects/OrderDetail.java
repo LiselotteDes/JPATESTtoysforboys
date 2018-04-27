@@ -19,7 +19,7 @@ public class OrderDetail implements Serializable {
 	@JoinColumn(name = "productId")
 	private Product product;
 	private long quantityOrdered;
-	@NumberFormat(pattern = "0.00")
+	@NumberFormat(pattern = "#,##0.00")
 	private BigDecimal priceEach;
 	
 	protected OrderDetail() {
@@ -38,7 +38,7 @@ public class OrderDetail implements Serializable {
 	public BigDecimal getPriceEach() {
 		return priceEach;
 	}
-	@NumberFormat(pattern = "0.00")
+	@NumberFormat(pattern = "#,##0.00")
 	public BigDecimal getValue() {
 		return priceEach.multiply(BigDecimal.valueOf(quantityOrdered));
 	}

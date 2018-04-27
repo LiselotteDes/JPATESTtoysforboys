@@ -13,6 +13,10 @@
 	<c:if test="${not empty param.fout}">
 		<div class="fout">${param.fout}</div>
 	</c:if>
+	
+	<c:if test="${not empty failedOrders}">
+		<div class="fout">Shipping failed for order(s) ${failedOrders}</div>
+	</c:if>
 
 	<c:if test="${not empty unshippedOrders}">
 		<c:url value="/shiporders" var="url"/>
@@ -31,11 +35,12 @@
 				<spring:url var="orderurl" value="/orders/{id}"><spring:param name="id" value="${order.id}"/></spring:url>
 				<tr>
 					<td class="right"><a href="${orderurl}">${order.id}</a></td>
-					<td class="right">${order.orderDate}</td>
-					<td class="right">${order.requiredDate}</td>
+					<td class="right"><spring:eval expression="order.orderDate"/></td>
+					<td class="right"><spring:eval expression="order.requiredDate"/></td>
 					<td>${order.customer.name}</td>
 					<td>${order.comments}</td>
-					<td>${order.status.printableName}</td>
+					<td class="icon"><img src="/images/${order.status}.png" alt="${order.status}">
+					${order.status.printableName}</td>
 					<td><input type="checkbox" name="shipids" value="${order.id}"></td>
 				</tr>
 				</c:forEach>

@@ -12,16 +12,18 @@
 	<h1>Order ${order.id}</h1>
 	<dl>
 		<dt>Ordered:</dt>
-		<dd>${order.orderDate}</dd>
+		<dd><spring:eval expression="order.orderDate"/></dd>
 		<dt>Required:</dt>
-		<dd>${order.requiredDate}</dd>
+		<dd><spring:eval expression="order.requiredDate"/></dd>
 		<dt>Customer:</dt>
 		<dd>${order.customer.name}<br>
 			${order.customer.address.streetAndNumber}<br>
 			${order.customer.address.postalCode} ${order.customer.address.state}<br>
 			${order.customer.address.country.name}</dd>
-		<dt>Comments:</dt>
-		<dd>${order.comments}</dd>
+		<c:if test="${not empty order.comments}">
+			<dt>Comments:</dt>
+			<dd>${order.comments}</dd>
+		</c:if>
 		<dt>Detail:</dt>
 		<dd>
 		<table>
@@ -29,13 +31,13 @@
 			<c:forEach items="${order.orderDetails}" var="detail">
 			<tr>
 				<td class="right">${detail.product.name}</td>
-				<td class="right">${detail.priceEach}</td>
+				<td class="right"><spring:eval expression="detail.priceEach"/></td>
 				<td class="right">${detail.quantityOrdered}</td>
-				<td>${detail.value}</td>
+				<td><spring:eval expression="detail.value"/></td>
 				<td class="center">
 				<c:choose>
-					<c:when test="${detail.deliverable}">&check;</c:when>
-					<c:otherwise>&cross;</c:otherwise>
+					<c:when test="${detail.deliverable}"><span class="green">&check;</span></c:when>
+					<c:otherwise><span class="red">&cross;</span></c:otherwise>
 				</c:choose>
 				</td>
 			</tr>
@@ -43,7 +45,7 @@
 		</table>
 		</dd>
 		<dt>Value:</dt>
-		<dd>${order.value}</dd>
+		<dd><spring:eval expression="order.value"/></dd>
 	</dl>
 </body>
 </html>
