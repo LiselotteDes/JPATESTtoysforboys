@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+body {
+	font-family: sans-serif;
+}
+
+dd, dt {
+	margin-left: 0;
+}
+dt {
+	margin-top: 0.5 em;
+}
+dd {
+	font-weight: bold;
+	margin-bottom: 0.5em;
+}
+
+table {
+	width: 100%;
+	display: block;
+}
+table.scrollable {
+	overflow-y: scroll;
+	height: 500px;
+}
+
+th {
+	background: gray;
+	color: white;
+	text-align: center;
+}
+tbody tr:nth-child(even) {
+	background-color: #DCDCDC;
+}
+td {
+	padding: 0.1em;
+}
+
+td.center {
+	text-align: center;
+}
+td.right {
+	text-align: right;
+}
+
+input {
+	display: block;
+	margin-top: 1em;
+	font-size: 1.1em;
+}
+
+input[type='checkbox'] {
+	display: inline;
+	margin: 0;
+}

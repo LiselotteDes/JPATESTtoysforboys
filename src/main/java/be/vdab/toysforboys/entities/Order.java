@@ -38,7 +38,7 @@ public class Order implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@DateTimeFormat(style = "S-", pattern = "dd-mm-yyyy")
+	@DateTimeFormat(style = "S-", pattern = "dd-mm-yy")
 	private LocalDate orderDate;
 	@DateTimeFormat(style = "S-", pattern = "dd-mm-yyyy")
 	private LocalDate requiredDate;
@@ -71,7 +71,7 @@ public class Order implements Serializable {
 	public long getId() {
 		return id;
 	}
-
+	
 	public LocalDate getOrderDate() {
 		return orderDate;
 	}

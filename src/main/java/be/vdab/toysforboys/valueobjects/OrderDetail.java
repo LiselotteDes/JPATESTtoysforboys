@@ -6,8 +6,6 @@ import java.math.BigDecimal;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedAttributeNode;
-import javax.persistence.NamedEntityGraph;
 
 import org.springframework.format.annotation.NumberFormat;
 
