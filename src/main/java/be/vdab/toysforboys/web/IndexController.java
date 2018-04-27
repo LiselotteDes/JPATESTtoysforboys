@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -31,9 +32,8 @@ class IndexController {
 		return modelAndView;
 	}
 	
-	@PostMapping(value="shiporders", params = "shipids")
-	ModelAndView ship(long[] shipids/*, RedirectAttributes redirectAttributes*/) {
-		ModelAndView modelAndView = new ModelAndView(REDIRECT_AFTER_SHIPPING);
+	@PostMapping(value="shiporders")
+	String ship(@RequestParam(required = false) long[] shipids, RedirectAttributes redirectAttributes) {
 		Set<Long> failed = new LinkedHashSet<>();
 		if (shipids != null) {
 			for (long id: shipids) {
@@ -44,12 +44,13 @@ class IndexController {
 				}
 			}
 		} 
-		
 		if (! failed.isEmpty()) {
-//			redirectAttributes.addAttribute("fout", "Shipping failed for order(s) " + failed.size() + ", not enough stock");
-//			modelAndView.addObject("failedOrders", failed);
+			String failedOrders = "";
+			for (Long id: failed) {
+				failedOrders += id + ", ";
+			}
+			redirectAttributes.addAttribute("fout", "Shipping failed for order(s) " + failedOrders + "not enough stock");
 		}
-		modelAndView.addObject("unshippedOrders", orderService.findUnshippedOrders());
-		return modelAndView;
+		return REDIRECT_AFTER_SHIPPING;
 	}
 }

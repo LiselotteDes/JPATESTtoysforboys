@@ -64,3 +64,7 @@ input[type='checkbox'] {
 	margin: 0 0 0 0.1em;
 }
 
+.fout {
+	margin: 0.5em 0;
+	color: red;
+}

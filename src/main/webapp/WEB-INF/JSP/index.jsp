@@ -11,7 +11,7 @@
 <body>
 	<h1>Unshipped orders</h1>
 	<c:if test="${not empty param.fout}">
-		<div class="fout">${param.fout}</div>
+		<h2 class="fout">${param.fout}</h2>
 	</c:if>
 	
 	<c:if test="${not empty failedOrders}">
